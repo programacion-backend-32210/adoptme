@@ -14,6 +14,13 @@ const connection = mongoose.connect(process.env.MONGO_URL)
 app.use(express.json());
 app.use(cookieParser());
 
+
+app.use('/api/calc/', (req, res) => {
+  const num1 = req.query.num1 || 0;
+  const num2 = req.query.num2 || 0;
+  res.send(`La suma es ${num1 + num2}`)
+
+})
 app.use('/api/users',usersRouter);
 app.use('/api/pets',petsRouter);
 app.use('/api/adoptions',adoptionsRouter);
